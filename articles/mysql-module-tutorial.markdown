@@ -83,10 +83,11 @@ Categories: nodejs, realtime, socket.io, mysql
 تابع `login` سمت سرور: ( application.js )
 
 	function login( data, socket) {
-	  var query = 'SELECT * FROM node_users WHERE username="' + data.username + '" AND password="' + data.password + '";
+	  var query = 'SELECT * FROM node_users';
 	  connection.query( query, function( error, rows, fields ) {
 	    if( error ) throw error;
-	    if( rows.length > 0 ) return socket.emit('loginAnswer', true)
+	    if( rows[i].username == data.username && rows[i].password == data.password ) {
+	      return socket.emit('loginAnswer', true)
 	    return socket.emit('loginAnswer', false)
 	  });
 	});
@@ -113,4 +114,5 @@ Categories: nodejs, realtime, socket.io, mysql
 	
 
 به همین سادگی بود، با یکم تمرین میتونید کار های خیلی بزرگتری کنید. امیدوارم موفق باشید!
+اگر مشکلی در آموزش میبینید یا انتقادی دارید خوشحال میشم اگر به کمک شما حل بشه.
 	
